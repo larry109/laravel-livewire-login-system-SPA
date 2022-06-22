@@ -1,9 +1,19 @@
 <?php
 
 
-Route::get('/linkstorage', function () {
+Route::any('/cache_clear', function () {
+    Artisan::call('cache:clear');
+});
+Route::any('/config_clear', function () {
     Artisan::call('config:clear');
 });
+Route::any('/route_clear', function () {
+    Artisan::call('route:clear');
+});
+Route::any('/view_clear', function () {
+    Artisan::call('view:clear');
+});
+
 
 Route::group(['middleware' => 'checkUserLogedIn'], function () {
     Route::get("/login", \App\Http\Livewire\Login::class)->name('login');
